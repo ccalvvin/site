@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shannon turns 29 💗</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: repeating-linear-gradient(
+        45deg,
+        #ffe6f0,
+        #ffe6f0 20px,
+        #fff3c4 20px,
+        #fff3c4 40px
+      );
+      font-family: 'Nunito', sans-serif;
+      color: #6b2d5c;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: auto;
+      padding: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      background: #fff;
+      border: 4px solid #ffb3d9;
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 8px 8px 0 #ff9ecf;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .pixel-heart {
+      font-size: 2.2rem;
+      animation: blink 1.2s infinite;
+    }
+
+    .details {
+      background: #fff6fb;
+      border: 3px dashed #ffc1dd;
+      padding: 16px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .countdown {
+      background: #fdf1ff;
+      border: 3px solid #d8b4ff;
+      padding: 16px;
+      margin: 20px 0;
+    }
+
+    .timer {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #7a3eb1;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 14px 22px;
+      background: #ff8fb1;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 700;
+      box-shadow: 0 6px 0 #ff6f9f;
+    }
+
+    .footer {
+      margin-top: 16px;
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    /* ADMIN */
+    .admin {
+      display: none;
+      background: #f7f7ff;
+      border: 3px solid #b8c6ff;
+      border-radius: 16px;
+      padding: 18px;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .admin h2 {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      color: #4a4a8a;
+    }
+
+    .admin ul {
+      padding-left: 18px;
+      line-height: 1.6;
+    }
+
+    .admin-note {
+      background: #fff;
+      border-left: 4px solid #ff8fb1;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 0.85rem;
+    }
+
+    /* PIN modal */
+    .pin-box {
+      display: none;
+      background: #fff;
+      border: 3px solid #ffb3d9;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 6px 6px 0 #ff9ecf;
+      margin-bottom: 20px;
+    }
+
+    .pin-input {
+      padding: 10px;
+      font-size: 1rem;
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 2px solid #ffc1dd;
+      text-align: center;
+    }
+
+    .pin-error {
+      color: #d9534f;
+      font-size: 0.85rem;
+      display: none;
+      margin-top: 6px;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 8px;
+      height: 8px;
+      opacity: 0.8;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- MAIN INVITE -->
+  <div class="card">
+    <div class="pixel-heart">💗</div>
+    <h1>Shannon is turning 29!</h1>
+
+    <div class="details">
+      📅 <strong>Date:</strong> 24 January<br>
+      ⏰ <strong>Time:</strong> All day<br>
+      🎀 <strong>Dress code:</strong> Cute & comfy<br>
+      🧺 <strong>Theme:</strong> To Be Updated
+    </div>
+
+    <div class="countdown">
+      ⏳ Countdown to her birthday
+      <div class="timer" id="timer">Loading...</div>
+    </div>
+
+    <p>
+      No hints. No spoilers.<br>
+      Just come and let me spoil you 💕
+    </p>
+
+    <a class="btn" href="https://wa.me/?text=I%20accept%20the%20birthday%20date%20invite%20💗">
+      I’m in 💌
+    </a>
+
+    <div class="footer">
+      Made with love, just for Shannon 🌸
+    </div>
+  </div>
+
+  <!-- ADMIN ACCESS -->
+  <div class="card">
+    <button class="btn" onclick="openPin()">Unlock Admin Brief 🔒</button>
+  </div>
+
+  <!-- PIN INPUT -->
+  <div class="pin-box" id="pinBox">
+    <strong>Enter PIN</strong>
+    <input
+      type="password"
+      class="pin-input"
+      id="pinInput"
+      placeholder="Enter PIN"
+    />
+    <div class="pin-error" id="pinError">Wrong PIN</div>
+    <button class="btn" onclick="checkPin()">Unlock</button>
+  </div>
+
+  <!-- ADMIN BRIEF -->
+  <div class="card admin" id="adminSection">
+    <h2>🗂️ Admin Brief</h2>
+
+    <strong>📍 Schedule</strong>
+    <ul>
+      <li>10:00 – Meet & morning activity</li>
+      <li>12:30 – Picnic setup & lunch</li>
+      <li>15:00 – Cake, gifts & photos</li>
+      <li>18:30 – Dinner reservation</li>
+    </ul>
+
+    <strong>☔ Wet Weather Plan</strong>
+    <ul>
+      <li>Gardens by the Bay / café backup</li>
+      <li>Indoor games + photos</li>
+      <li>Protect cake & gifts</li>
+    </ul>
+
+    <strong>🎒 Reminders</strong>
+    <ul>
+      <li>Picnic mat, wipes, power bank</li>
+      <li>Charge phone</li>
+      <li>Confirm dinner booking</li>
+    </ul>
+
+    <div class="admin-note">
+      💡 Screenshot this for easy reference.
+    </div>
+  </div>
+
+</div>
+
+<script>
+  /* CHANGE YOUR PIN HERE */
+  const ADMIN_PIN = "2401";
+
+  function openPin() {
+    document.getElementById("pinBox").style.display = "block";
+  }
+
+  function checkPin() {
+    const input = document.getElementById("pinInput").value;
+    const error = document.getElementById("pinError");
+
+    if (input === ADMIN_PIN) {
+      document.getElementById("adminSection").style.display = "block";
+      document.getElementById("pinBox").style.display = "none";
+      error.style.display = "none";
+    } else {
+      error.style.display = "block";
+    }
+  }
+
+  /* Countdown */
+  const targetDate = new Date("January 24, 2026 00:00:00").getTime();
+  const timer = document.getElementById("timer");
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      timer.innerHTML = "🎉 It’s her birthday! 🎉";
+      return;
+    }
+
+    const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+    timer.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+  }, 1000);
+
+  /* Confetti */
+  const colors = ["#ff8fb1", "#ffd6e8", "#fff3c4", "#d8b4ff", "#bde0fe"];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDuration = 3 + Math.random() * 4 + "s";
+    c.style.opacity = Math.random();
+    document.body.appendChild(c);
+  }
+</script>
+
+</body>
+</html>
