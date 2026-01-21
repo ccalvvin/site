@@ -3,308 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shannon turns 29 💗</title>
+  <title>Shannon Turns 29 🎂</title>
 
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
     body {
       margin: 0;
-      overflow-x: hidden;
-      background: repeating-linear-gradient(
-        45deg,
-        #ffe6f0,
-        #ffe6f0 20px,
-        #fff3c4 20px,
-        #fff3c4 40px
-      );
       font-family: 'Nunito', sans-serif;
-      color: #6b2d5c;
+      background: linear-gradient(180deg, #fff6fb, #f2f8ff);
+      color: #333;
       text-align: center;
     }
 
     .container {
-      max-width: 420px;
+      max-width: 720px;
       margin: auto;
       padding: 24px;
-      position: relative;
-      z-index: 2;
     }
 
-    .card {
-      background: #fff;
-      border: 4px solid #ffb3d9;
-      border-radius: 18px;
-      padding: 26px;
-      box-shadow: 8px 8px 0 #ff9ecf;
-      margin-bottom: 20px;
+    .banner {
+      width: 100%;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
     h1 {
-      font-size: 1.6rem;
-      font-weight: 700;
-    }
-
-    .pixel-heart {
       font-size: 2.2rem;
-      animation: blink 1.2s infinite;
+      margin-bottom: 8px;
     }
 
-    .details {
-      background: #fff6fb;
-      border: 3px dashed #ffc1dd;
-      padding: 16px;
-      margin: 20px 0;
-      font-size: 0.95rem;
-      line-height: 1.6;
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 32px;
     }
 
-    .countdown {
-      background: #fdf1ff;
-      border: 3px solid #d8b4ff;
-      padding: 16px;
-      margin: 20px 0;
-    }
-
-    .timer {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #7a3eb1;
-      margin-top: 6px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 14px 22px;
-      background: #ff8fb1;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 999px;
-      font-weight: 700;
-      box-shadow: 0 6px 0 #ff6f9f;
-    }
-
-    .footer {
-      margin-top: 16px;
-      font-size: 0.75rem;
-      opacity: 0.7;
-    }
-
-    /* ADMIN */
-    .admin {
-      display: none;
-      background: #f7f7ff;
-      border: 3px solid #b8c6ff;
-      border-radius: 16px;
-      padding: 18px;
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
       text-align: left;
-      font-size: 0.9rem;
     }
 
-    .admin h2 {
-      text-align: center;
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-      color: #4a4a8a;
+    .info p {
+      margin: 6px 0;
     }
 
-    .admin ul {
-      padding-left: 18px;
-      line-height: 1.6;
-    }
-
-    .admin-note {
-      background: #fff;
-      border-left: 4px solid #ff8fb1;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 0.85rem;
-    }
-
-    /* PIN modal */
+    /* PIN Section */
     .pin-box {
-      display: none;
-      background: #fff;
-      border: 3px solid #ffb3d9;
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: 6px 6px 0 #ff9ecf;
-      margin-bottom: 20px;
-    }
-
-    .pin-input {
-      padding: 10px;
-      font-size: 1rem;
-      width: 100%;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 2px solid #ffc1dd;
+      margin-top: 20px;
       text-align: center;
     }
 
-    .pin-error {
-      color: #d9534f;
-      font-size: 0.85rem;
+    input[type="password"] {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      width: 160px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 12px;
+      background: #ffb6d9;
+      color: #333;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ffa6cf;
+    }
+
+    .error {
+      color: #ff6b6b;
+      font-size: 0.9rem;
+      margin-top: 8px;
       display: none;
-      margin-top: 6px;
     }
 
-    /* Confetti */
-    .confetti {
-      position: fixed;
-      top: -10px;
-      width: 8px;
-      height: 8px;
-      opacity: 0.8;
-      animation: fall linear infinite;
-      z-index: 1;
+    #adminContent {
+      display: none;
     }
 
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-      }
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+    footer {
+      margin-top: 40px;
+      font-size: 0.85rem;
+      color: #777;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <!-- MAIN INVITE -->
-  <div class="card">
-    <div class="pixel-heart">💗</div>
-    <h1>Shannon is turning 29!</h1>
+    <!-- Banner -->
+    <img src="birthday-banner.png" alt="Birthday Banner" class="banner"/>
 
-    <div class="details">
-      📅 <strong>Date:</strong> 24 January<br>
-      ⏰ <strong>Time:</strong> All day<br>
-      🎀 <strong>Dress code:</strong> Cute & comfy<br>
-      🧺 <strong>Theme:</strong> To Be Updated
+    <h1>Shannon is turning 29! 🎂</h1>
+
+    <!-- Public Info -->
+    <div class="card info">
+      <p>📅 <strong>Date:</strong> 24 January</p>
+      <p>⏰ <strong>Time:</strong> All day</p>
+      <p>🎀 <strong>Dress Code:</strong> Cute & comfy</p>
+      <p>🧺 <strong>Vibe:</strong> Chill • Fun • Birthday energy ✨</p>
     </div>
 
-    <div class="countdown">
-      ⏳ Countdown to birthday
-      <div class="timer" id="timer">Loading...</div>
+    <!-- PIN Entry -->
+    <h2>🗂️ Admin Brief 💕</h2>
+
+    <div class="card pin-box">
+      <p>Enter PIN to view details 🔒</p>
+      <input type="password" id="pinInput" placeholder="PIN" />
+      <br />
+      <button onclick="checkPin()">Unlock</button>
+      <div class="error" id="errorMsg">Wrong PIN 💔</div>
     </div>
 
-    <p>
-      No hints. No spoilers.<br>
-      Just come and let me spoil you 💕
-    </p>
+    <!-- Hidden Admin Content -->
+    <div class="card" id="adminContent">
+      <p><strong>11am</strong> - Meet up 💕</p>
+      <p><strong>Late morning</strong> - Quick lunch 🍽️</p>
 
-    <a class="btn" href="https://t.me/ccalvvin?text=woo%20i%20rsvp%20now&profile">
-      I’m in 💌
-    </a>
+      <p><strong>🎂 Activity 1</strong><br/>
+      Something special just for you ✨</p>
 
-    <div class="footer">
-      Made with love, just for Shannon 🌸
-    </div>
+      <p><strong>🧺 Activity 2, 3, 4</strong><br/>
+        <p><strong>Late afternoon onwards</strong> - Main Event<br/>
+
+    <footer>
+      Made with 💗 just for you
+    </footer>
+
   </div>
 
-  <!-- ADMIN ACCESS -->
-  <div class="card">
-    <button class="btn" onclick="openPin()">Unlock Admin Brief 🔒</button>
-  </div>
+  <script>
+    // CHANGE YOUR PIN HERE
+    const CORRECT_PIN = "2401";
 
-  <!-- PIN INPUT -->
-  <div class="pin-box" id="pinBox">
-    <strong>Enter PIN</strong>
-    <input
-      type="password"
-      class="pin-input"
-      id="pinInput"
-      placeholder="Enter PIN"
-    />
-    <div class="pin-error" id="pinError">Wrong PIN</div>
-    <button class="btn" onclick="checkPin()">Unlock</button>
-  </div>
+    function checkPin() {
+      const input = document.getElementById("pinInput").value;
+      const error = document.getElementById("errorMsg");
+      const admin = document.getElementById("adminContent");
 
-  <!-- ADMIN BRIEF -->
-  <div class="card admin" id="adminSection">
-    <h2>🗂️ Admin Brief</h2>
+      if (input === CORRECT_PIN) {
+        admin.style.display = "block";
+        error.style.display = "none";
 
-    <strong>📍 Schedule</strong>
-    <ul>
-      <li>10:00 – Meet up & quick brunch</li>
-      <li>12:30 – Activity 1</li>
-      <li>18:30 – Activity 2</li>
-    </ul>
-
-    <strong>🎒 Reminders</strong>
-    <ul>
-      <li>Bring powerbank</li>
-      <li>Wear comfortably, sun protection</li>
-    </ul>
-
-    <div class="admin-note">
-      💡 Screenshot this for easy reference.
-    </div>
-  </div>
-
-</div>
-
-<script>
-  /* CHANGE YOUR PIN HERE */
-  const ADMIN_PIN = "3068";
-
-  function openPin() {
-    document.getElementById("pinBox").style.display = "block";
-  }
-
-  function checkPin() {
-    const input = document.getElementById("pinInput").value;
-    const error = document.getElementById("pinError");
-
-    if (input === ADMIN_PIN) {
-      document.getElementById("adminSection").style.display = "block";
-      document.getElementById("pinBox").style.display = "none";
-      error.style.display = "none";
-    } else {
-      error.style.display = "block";
+        confetti({
+          particleCount: 150,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      } else {
+        error.style.display = "block";
+      }
     }
-  }
-
-  /* Countdown */
-  const targetDate = new Date("January 24, 2026 00:00:00").getTime();
-  const timer = document.getElementById("timer");
-
-  setInterval(() => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance < 0) {
-      timer.innerHTML = "🎉 It’s her birthday! 🎉";
-      return;
-    }
-
-    const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-    timer.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
-  }, 1000);
-
-  /* Confetti */
-  const colors = ["#ff8fb1", "#ffd6e8", "#fff3c4", "#d8b4ff", "#bde0fe"];
-  for (let i = 0; i < 60; i++) {
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    c.style.animationDuration = 3 + Math.random() * 4 + "s";
-    c.style.opacity = Math.random();
-    document.body.appendChild(c);
-  }
-</script>
+  </script>
 
 </body>
 </html>
