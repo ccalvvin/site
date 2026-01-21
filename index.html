@@ -35,13 +35,7 @@
 
     h1 {
       font-size: 2.2rem;
-      margin-bottom: 6px;
-    }
-
-    .countdown {
-      font-size: 1rem;
-      color: #666;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
     }
 
     h2 {
@@ -64,6 +58,7 @@
 
     /* PIN Section */
     .pin-box {
+      margin-top: 20px;
       text-align: center;
     }
 
@@ -119,7 +114,6 @@
     <img src="birthday-banner.png" alt="Birthday Banner" class="banner"/>
 
     <h1>Shannon is turning 29! 🎂</h1>
-    <div class="countdown" id="countdown">Counting down… ⏳</div>
 
     <!-- Public Info -->
     <div class="card info">
@@ -142,18 +136,14 @@
 
     <!-- Hidden Admin Content -->
     <div class="card" id="adminContent">
-      <p><strong>11am</strong> – Meet up 💕</p>
-      <p><strong>Late morning</strong> – Quick lunch 🍽️</p>
+      <p><strong>11am</strong> - Meet up 💕 (pls get ready by then) </p>
+      <p><strong>Late morning</strong> - Quick lunch 🍽️</p>
 
-      <p><strong>🎂 Part 1</strong><br/>
+      <p><strong>🎂 Activity 1</strong><br/>
       Something special just for you ✨</p>
 
-      <p><strong>✨ Part 2</strong><br/>
-      Late afternoon onwards – Main event</p>
-
-      <p><strong>🌙 Wrap-up</strong><br/>
-      Home sweet home 🏡</p>
-    </div>
+      <p><strong>🧺 Activity 2, 3, 4</strong><br/>
+        <p><strong>Late afternoon onwards</strong> - Main Event<br/>
 
     <footer>
       Made with 💗 just for you
@@ -162,32 +152,8 @@
   </div>
 
   <script>
-    /* =====================
-       COUNTDOWN TIMER
-    ====================== */
-    const eventDate = new Date("January 24, 2026 00:00:00").getTime();
-    const countdownEl = document.getElementById("countdown");
-
-    setInterval(() => {
-      const now = new Date().getTime();
-      const distance = eventDate - now;
-
-      if (distance < 0) {
-        countdownEl.innerHTML = "It’s birthday time! 🎉";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-      countdownEl.innerHTML = `${days} days ${hours} hrs ${minutes} mins to go 💕`;
-    }, 1000);
-
-    /* =====================
-       PIN CHECK
-    ====================== */
-    const CORRECT_PIN = "2401"; // change if needed
+    // CHANGE YOUR PIN HERE
+    const CORRECT_PIN = "2401";
 
     function checkPin() {
       const input = document.getElementById("pinInput").value;
